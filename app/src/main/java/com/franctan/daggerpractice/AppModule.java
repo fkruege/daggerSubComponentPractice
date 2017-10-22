@@ -32,10 +32,4 @@ public class AppModule {
         return new AppDependency();
     }
 
-
-//    @Provides
-//    @Singleton
-//    public MainActivityDependency provideMainActivityDependency() {
-//        return new MainActivityDependency();
-//    }
 }
