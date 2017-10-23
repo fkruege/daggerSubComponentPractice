@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import javax.inject.Inject;
 
@@ -15,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Inject
     MainActivityDependency mainActivityDependency;
+
+    @Inject
+    AppDependency appDependency;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +28,17 @@ public class MainActivity extends AppCompatActivity {
 
         myApp.appComponent
                 .activityComponentBuilder()
-                .activityModule(new ActivityModule(this))
+                .bindActivity(this)
+                .activityModule(new ActivityModule())
                 .build()
                 .inject(this);
-
-
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        TextView txtTest = (TextView) findViewById(R.id.txtTest);
+        txtTest.setText(mainActivityDependency.getMsg());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

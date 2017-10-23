@@ -11,9 +11,9 @@ import dagger.Component;
  */
 
 @Singleton
-@Component(modules = AppModule.class)
+@Component(modules = {AppModule.class})
 public interface AppComponent {
     ActivityComponent.Builder activityComponentBuilder();
-    Application application();
     void inject(MyApp myApp);
+
 }
